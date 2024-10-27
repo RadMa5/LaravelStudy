@@ -12,7 +12,7 @@
                 Registration
             </div>
             <div class="cardbody">
-                <form name="addform" id="addform" method="post" action="{{ url('/store_form') }}">
+                <form name="addform" id="addform" method="post" action="{{ url(path: '/store_form') }}">
                     @csrf
                     <div class="formgroup">
                         <label for="nameform">Name</label>

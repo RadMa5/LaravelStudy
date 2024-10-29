@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Employee;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home', ['name' => 'John', 'age' => 25, 'position' => 'Senior Manager', 'address' => 'Doe Street 111']);
+});
+
+Route::get('/contacts', function () {
+    return view('contacts', ['address' => 'Doe Street 111', 'post_code' => '111111', 'email' => 'john@doe.com', 'phone' => '111111']);
 });
 
 Route::get('/userform', [\App\Http\Controllers\FormProcessor::class, 'index']);

@@ -10,5 +10,5 @@ class Employee extends Model
     /** @use HasFactory<\Database\Factories\EmployeeFactory> */
     use HasFactory;
     public $timestamps = true;
-    protected $fillable = ['name', 'surname', 'email'];
+    protected $fillable = ['name', 'surname', 'email', 'position'];
 }

@@ -12,17 +12,26 @@
                 Registration
             </div>
             <div class="cardbody">
-                <form name="addform" id="addform" method="post" action="{{ url(path: '/store_form') }}">
+                <form name="employee-form" id="employee-form" method="post" action="{{ url(path: '/store_form') }}">
                     @csrf
-                    <div class="formgroup">
+                    <div class="form-group">
                         <label for="nameform">Name</label>
-                        <input name="nameform" id="nameform" type="text" class="formcontrol" required="">
+                        <input name="nameform" id="nameform" type="text" class="formcontrol" required="true">
                         <label for="surnameform">Surname</label>
-                        <input name="surnameform" id="surnameform" type="text" class="formcontrol" required="">
+                        <input name="surnameform" id="surnameform" type="text" class="formcontrol" required="true">
+                        <label for="positionform">Position</label>
+                        <input type="text" name="positionform" id="positionform" class="formcontrol" required="true">
                         <label for="emailform">Email</label>
-                        <input type="email" name="emailform" id="emailform" class="formcontrol" required="">
+                        <input type="email" name="emailform" id="emailform" class="formcontrol" required="true">
+                        <br>
+                        
                     </div>
                     <button type="submit" class="brnform">Submit</button>
+                </form>
+                <form name="jsonform"  method="post" action="{{ url(path: '/store_form_json') }}">
+                    @csrf
+                    <textarea maxlength="5000" name="textarea" rows="20" cols="50"></textarea>
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>

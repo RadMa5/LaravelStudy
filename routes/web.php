@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Employee;
@@ -24,3 +25,7 @@ Route::get('/test_database', function () {
     });
 
 Route::put('/user/{id}', [EmployeeController::class, 'update']);
+
+
+Route::get('/index', [BookController::class, 'index']);
+Route::post('/store', [BookController::class, 'store']);

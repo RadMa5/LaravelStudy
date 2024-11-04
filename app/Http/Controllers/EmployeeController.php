@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    public function index() {
+    public function userform() {
         return view('FormProcessor');
     }
 
@@ -49,21 +49,20 @@ class EmployeeController extends Controller
         $empl->save();
     }
 
-    // public function updatetest() {
-    //     $request = ['name' => 'newname', 'surname' => 'newsurname', 'email' => 'john@doe.com', 'position' => 'senior manager'];
-
-    //     $empl = Employee::where('id', 3)->first();
-    //     $empl->Name = $request['name'];
-    //     $empl->Surname = $request['surname'];
-    //     $empl->Email = $request['email'];
-    //     $empl->Position= $request['position'];
-    //     $empl->save();
-    // }
-
     public function getPath(Request $request){
         $uri = $request->path();
     }
     public function getUrl(Request $request){
         $url = $request->url();
+    }
+
+    public function get($id){
+        $emp = Employee::where("id", $id)->first()->toArray();
+        return view('oneuser', $emp);
+    }
+
+    public function index(){
+        $emp = Employee::all(['*'])->toArray();
+        return view('allusers', ["emps" => $emp]);
     }
 }

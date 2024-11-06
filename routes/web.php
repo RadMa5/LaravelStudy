@@ -18,4 +18,6 @@ Route::get('/user/{id}', [EmployeeController::class, 'get']);
 Route::get('/user', [EmployeeController::class, 'index']);
 Route::get('/resume/{id}', [PdfController::class, 'index']);
 
-
+Route::get('/logs', function(){
+    return view('logs');
+});

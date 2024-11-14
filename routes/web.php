@@ -1,23 +1,28 @@
 <?php
 
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\PdfController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+require __DIR__.'/auth.php';
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-Route::get('/userform', [\App\Http\Controllers\EmployeeController::class, 'userform']);
-Route::post('/store_form', [\App\Http\Controllers\EmployeeController::class, 'store'])->name('store-user');
-Route::post('/store_form_json', [\App\Http\Controllers\EmployeeController::class, 'storeJson']);
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-
-Route::get('/user/{id}', [EmployeeController::class, 'get']);
-
-Route::get('/user', [EmployeeController::class, 'index']);
-Route::get('/resume/{id}', [PdfController::class, 'index']);
-
-Route::get('/logs', function(){
-    return view('logs');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/users', [UsersController::class, 'index']);

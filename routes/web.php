@@ -21,3 +21,8 @@ Route::get('/resume/{id}', [PdfController::class, 'index']);
 Route::get('/logs', function(){
     return view('logs');
 });
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
